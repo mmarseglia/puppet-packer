@@ -15,7 +15,7 @@
 #
 # [*cache_dir*]
 #  The directory to cache Packer release archives in.  Defaults to
-#  '/usr/local/packer'.
+#  '/tmp'.
 #
 # [*base_url*]
 #  The base download URL to retrieve Packer from, including a
@@ -25,14 +25,11 @@ class packer(
   $ensure    = 'installed',
   $version   = '0.7.5',
   $bin_dir   = '/usr/local/bin',
-  $cache_dir = '/usr/local/packer',
+  $cache_dir = '/tmp',
   $base_url  = 'https://dl.bintray.com/mitchellh/packer/',
 ){
   case $ensure {
     'present', 'installed': {
-      # Need parameters from sys and unzip installed.
-      include sys
-      include sys::unzip
 
       if $::architecture in ['x86_64', 'amd64', 'x64'] {
         $arch = 'amd64'
@@ -53,30 +50,19 @@ class packer(
       $packer_zip = "${cache_dir}/${packer_basename}"
       $packer_url = "${base_url}${packer_basename}"
 
-      # Ensure cache directory for Packer's zip archives exists.
-      file { $cache_dir:
-        ensure => directory,
-        owner  => 'root',
-        group  => $sys::root_group,
-        mode   => '0644',
-      }
-
       # Download the Packer zip archive to the cache.
-      sys::fetch { 'download-packer':
-        destination => $packer_zip,
-        source      => $packer_url,
-        require     => File[$cache_dir],
+      if !Class['archive'] {
+        include archive
       }
 
-      # Unzip directly into the binary directory, overwriting previous files.
-      exec { 'install-packer':
-        command => "${sys::unzip::path} -o ${packer_zip}",
-        path    => [$bin_dir, '/usr/bin', '/bin'],
-        cwd     => $bin_dir,
-        user    => 'root',
-        unless  => "test -x packer && packer version | head -n 1 | grep '^Packer v${version}$'",
-        require => Sys::Fetch['download-packer'],
+      archive { $packer_zip :
+        ensure  => present,
+        extract => true,
+        extract_path  => $bin_dir, 
+        source  => $packer_url,
+        creates => "${bin_dir}/packer",
       }
+
     }
     'absent', 'uninstalled': {
       # Ensure the binaries are removed.

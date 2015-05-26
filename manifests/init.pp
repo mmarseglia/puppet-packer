@@ -56,11 +56,11 @@ class packer(
       }
 
       archive { $packer_zip :
-        ensure  => present,
-        extract => true,
-        extract_path  => $bin_dir, 
-        source  => $packer_url,
-        creates => "${bin_dir}/packer",
+        ensure       => present,
+        extract      => true,
+        extract_path => $bin_dir,
+        source       => $packer_url,
+        creates      => "${bin_dir}/packer",
       }
 
     }

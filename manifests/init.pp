@@ -51,9 +51,7 @@ class packer(
       $packer_url = "${base_url}${packer_basename}"
 
       # Download the Packer zip archive to the cache.
-      if !Class['archive'] {
-        include archive
-      }
+      ensure_resource('class', 'archive')
 
       archive { $packer_zip :
         ensure       => present,

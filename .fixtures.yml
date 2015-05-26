@@ -1,0 +1,4 @@
+fixtures:
+  repositories:
+    archive:
+      repo: "git@github.com:nanliu/puppet-archive.git"

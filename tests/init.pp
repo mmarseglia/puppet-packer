@@ -1,3 +1,7 @@
-include stdlib
+node default {
+  include packer
 
-class { 'packer' : }
+  packer::plugin { 'post-processor-vagrant-vmware-ovf' :
+      version   => 'v1.2.3';
+  }
+}

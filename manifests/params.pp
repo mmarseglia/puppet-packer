@@ -7,14 +7,16 @@
 #
 class packer::params {
 
+  ensure_resource('class', 'stdlib')
+
   $base_url  = 'https://dl.bintray.com/mitchellh/packer/'
 
-  case $::kernel.downcase {
+  case downcase($::kernel) {
     'windows' : {
       $bin_dir    = 'C:\WINDOWS\system32'
       $cache_dir  = 'C:\TEMP'
     }
-    '^/(linux|darwin)$/' : {
+    /^(linux|darwin)$/ : {
       $bin_dir   = '/usr/local/bin'
       $cache_dir = '/tmp'
     }

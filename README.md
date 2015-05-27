@@ -25,6 +25,16 @@ class { 'packer':
   bin_dir => '/opt/local/bin',
 }
 ```
+Plugins
+-------
+
+Install plugins using packer::plugin.
+
+```puppet
+packer::plugin { 'my-plugin' :
+	version	=> 'v1.2.3',
+}
+```
 
 License
 -------

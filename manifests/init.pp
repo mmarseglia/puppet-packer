@@ -17,17 +17,14 @@
 #  The directory to cache Packer release archives in.  Defaults to
 #  '/tmp'.
 #
-# [*base_url*]
-#  The base download URL to retrieve Packer from, including a
-#  a trailing '/'.  Defaults to: 'https://dl.bintray.com/mitchellh/packer/'.
-#
 class packer(
   $ensure    = 'installed',
   $version   = '0.7.5',
-  $bin_dir   = '/usr/local/bin',
-  $cache_dir = '/tmp',
-  $base_url  = 'https://dl.bintray.com/mitchellh/packer/',
-){
+  $bin_dir   = $packer::params::bin_dir,
+  $cache_dir = $packer::params::cache_dir,
+) inherits packer::params {
+
+
   case $ensure {
     'present', 'installed': {
 
@@ -48,7 +45,7 @@ class packer(
       )
 
       $packer_zip = "${cache_dir}/${packer_basename}"
-      $packer_url = "${base_url}${packer_basename}"
+      $packer_url = "${packer::params::base_url}${packer_basename}"
 
       # Download the Packer zip archive to the cache.
       ensure_resource('class', 'archive')

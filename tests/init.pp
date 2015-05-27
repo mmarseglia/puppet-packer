@@ -1,1 +1,3 @@
+include stdlib
+
 class { 'packer' : }

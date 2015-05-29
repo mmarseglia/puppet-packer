@@ -12,6 +12,13 @@ define packer::plugin (
 
   include ::packer::params
 
+  validate_string($name)
+  validate_string($ensure)
+
+  if $version == undef {
+    fail("Plugin ${name} version is undefined. You must specify a version")
+  }
+
   $bin_dir    = $::packer::params::bin_dir
   $cache_dir  = $::packer::params::cache_dir
 
@@ -21,23 +28,21 @@ define packer::plugin (
     $arch = 'i386'
   }
 
-  validate_string($name)
-  validate_string($version)
-  validate_string($ensure)
-
   case $name {
     'post-processor-vagrant-vmware-ovf' : {
       if $ensure in 'present' {
         $file = inline_template(
           "<%= \"packer-#{@name}.#{scope['::kernel'].downcase}-#{@arch}\" %>"
         )
-        $url = "https://github.com/gosddc/packer-${name}/releases/download/${version}/"
+        $base_url = "https://github.com/gosddc/packer-${name}/releases/download/${version}/"
+
+        $url = "${base_url}${file}.tar.gz"
 
         archive { $file :
           ensure           => present,
           target           => $bin_dir,
           follow_redirects => true,
-          url              => "${url}${file}",
+          url              => $url,
           checksum         => false,
           src_target       => $cache_dir,
         }

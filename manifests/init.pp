@@ -46,7 +46,7 @@ class packer(
         "<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}\" %>"
       )
 
-      $packer_url = "${packer::params::base_url}${packer_basename}"
+      $packer_url = "${packer::params::base_url}${packer_basename}.zip"
 
       # Download the Packer zip archive to the cache.
       archive { $packer_basename :

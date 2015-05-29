@@ -1,7 +1,7 @@
 fixtures:
   repositories:
     archive:
-      repo: "git@github.com:nanliu/puppet-archive.git"
+      repo: "git@github.com:camptocamp/puppet-archive.git"
     pe_gem:
       repo: "git@github.com:puppetlabs/puppetlabs-pe_gem.git"
     stdlib:

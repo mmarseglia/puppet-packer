@@ -34,11 +34,12 @@ define packer::plugin (
         $url = "https://github.com/gosddc/packer-${name}/releases/download/${version}/"
 
         archive { "${cache_dir}${file}" :
-          ensure       => present,
-          extract      => true,
-          extract_path => $bin_dir,
-          source       => "${url}${file}",
-          creates      => "${bin_dir}/packer-${name}",
+          ensure           => present,
+          target           => $bin_dir,
+          follow_redirects => true,
+          extension        => 'zip',
+          url              => "${url}${file}",
+          src_target       => '/tmp',
         }
       } elsif $ensure in 'absent' {
         file { "${bin_dir}/packer-${name}" :

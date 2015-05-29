@@ -23,7 +23,9 @@ class packer(
   $bin_dir   = $packer::params::bin_dir,
   $cache_dir = $packer::params::cache_dir,
 ) inherits packer::params {
-
+  Exec {
+    path => '/bin:/usr/bin:/sbin:/usr/sbin',
+  }
 
   case $ensure {
     'present', 'installed': {
@@ -48,14 +50,14 @@ class packer(
       $packer_url = "${packer::params::base_url}${packer_basename}"
 
       # Download the Packer zip archive to the cache.
-      ensure_resource('class', 'archive')
-
       archive { $packer_zip :
-        ensure       => present,
-        extract      => true,
-        extract_path => $bin_dir,
-        source       => $packer_url,
-        creates      => "${bin_dir}/packer",
+        ensure            => present,
+        url               => $packer_url,
+        target            => $bin_dir,
+        follow_redirects  => true,
+        extension         => 'zip',
+        checksum          => false,
+        src_target        => '/tmp',
       }
 
     }

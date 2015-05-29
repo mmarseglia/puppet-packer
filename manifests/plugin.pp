@@ -37,7 +37,6 @@ define packer::plugin (
           ensure           => present,
           target           => $bin_dir,
           follow_redirects => true,
-          extension        => 'zip',
           url              => "${url}${file}",
           src_target       => $cache_dir,
         }

@@ -29,7 +29,7 @@ define packer::plugin (
     'post-processor-vagrant-vmware-ovf' : {
       if $ensure in 'present' {
         $file = inline_template(
-          "<%= \"packer-#{@name}.#{scope['::kernel'].downcase}-#{@arch}.tar.gz\" %>"
+          "<%= \"packer-#{@name}.#{scope['::kernel'].downcase}-#{@arch}\" %>"
         )
         $url = "https://github.com/gosddc/packer-${name}/releases/download/${version}/"
 

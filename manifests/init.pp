@@ -43,7 +43,7 @@ class packer(
       }
 
       $packer_basename = inline_template(
-        "<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}.zip\" %>"
+        "<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}\" %>"
       )
 
       $packer_url = "${packer::params::base_url}${packer_basename}"

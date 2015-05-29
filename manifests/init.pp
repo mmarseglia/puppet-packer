@@ -46,18 +46,17 @@ class packer(
         "<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}.zip\" %>"
       )
 
-      $packer_zip = "${cache_dir}/${packer_basename}"
       $packer_url = "${packer::params::base_url}${packer_basename}"
 
       # Download the Packer zip archive to the cache.
-      archive { $packer_zip :
+      archive { $packer_basename :
         ensure            => present,
         url               => $packer_url,
         target            => $bin_dir,
         follow_redirects  => true,
         extension         => 'zip',
         checksum          => false,
-        src_target        => '/tmp',
+        src_target        => $cache_dir,
       }
 
     }

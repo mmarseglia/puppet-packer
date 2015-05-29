@@ -33,13 +33,13 @@ define packer::plugin (
         )
         $url = "https://github.com/gosddc/packer-${name}/releases/download/${version}/"
 
-        archive { "${cache_dir}${file}" :
+        archive { $file :
           ensure           => present,
           target           => $bin_dir,
           follow_redirects => true,
           extension        => 'zip',
           url              => "${url}${file}",
-          src_target       => '/tmp',
+          src_target       => $cache_dir,
         }
       } elsif $ensure in 'absent' {
         file { "${bin_dir}/packer-${name}" :

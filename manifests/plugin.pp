@@ -38,6 +38,7 @@ define packer::plugin (
           target           => $bin_dir,
           follow_redirects => true,
           url              => "${url}${file}",
+          checksum         => false,
           src_target       => $cache_dir,
         }
       } elsif $ensure in 'absent' {

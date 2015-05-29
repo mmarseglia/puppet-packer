@@ -50,13 +50,13 @@ class packer(
 
       # Download the Packer zip archive to the cache.
       archive { $packer_basename :
-        ensure            => present,
-        url               => $packer_url,
-        target            => $bin_dir,
-        follow_redirects  => true,
-        extension         => 'zip',
-        checksum          => false,
-        src_target        => $cache_dir,
+        ensure           => present,
+        url              => $packer_url,
+        target           => $bin_dir,
+        follow_redirects => true,
+        extension        => 'zip',
+        checksum         => false,
+        src_target       => $cache_dir,
       }
 
     }

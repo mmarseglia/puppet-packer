@@ -38,13 +38,11 @@ define packer::plugin (
 
         $url = "${base_url}${file}.tar.gz"
 
-        archive { $file :
-          ensure           => present,
-          target           => $bin_dir,
-          follow_redirects => true,
-          url              => $url,
-          checksum         => false,
-          src_target       => $cache_dir,
+        archive { "${cache_dir}/${file}" :
+          ensure          => present,
+          extract_path    => $bin_dir,
+          source          => $url,
+          checksum_verify => false,
         }
       } elsif $ensure in 'absent' {
         file { "${bin_dir}/packer-${name}" :

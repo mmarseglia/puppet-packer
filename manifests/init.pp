@@ -49,14 +49,14 @@ class packer(
       $packer_url = "${packer::params::base_url}${packer_basename}.zip"
 
       # Download the Packer zip archive to the cache.
-      archive { $packer_basename :
-        ensure           => present,
-        url              => $packer_url,
-        target           => $bin_dir,
-        follow_redirects => true,
-        extension        => 'zip',
-        checksum         => false,
-        src_target       => $cache_dir,
+      archive { "${cache_dir}/${packer_basename}.zip" :
+        ensure          => present,
+        extract         => true,
+        extract_path    => $bin_dir,
+        source          => $packer_url,
+        checksum_verify => false,
+        cleanup         => true,
+        creates         => "${bin_dir}/packer",
       }
 
     }

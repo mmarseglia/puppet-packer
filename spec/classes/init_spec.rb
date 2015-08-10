@@ -8,5 +8,5 @@ describe 'packer' do
 
 				it { should compile }
 				it { should contain_class('packer') }
-				it { should contain_archive('packer_0.7.5_linux_amd64.zip') }
+				it { should contain_archive('/tmp/packer_0.7.5_linux_amd64.zip') }
 end

@@ -10,3 +10,9 @@ BUG FIXES:
 IMPROVEMENTS:
 
 * Upgrade to Packer 0.7.5.
+
+## 1.0.0
+
+* Removed support for Puppet 2.7.
+* Added support for upgrading existing packer installation.
+* Fixed broken tests.

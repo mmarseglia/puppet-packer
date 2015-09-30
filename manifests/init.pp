@@ -8,7 +8,7 @@
 #  Defaults to 'installed', if set to 'absent' will remove Packer.
 #
 # [*version*]
-#  The version of Packer to install, defaults to '0.7.5'.
+#  The version of Packer to install, defaults to 0.8.6.
 #
 # [*bin_dir*]
 #  The binary directory to place Packer in.  Defaults to '/usr/local/bin'.
@@ -19,7 +19,7 @@
 #
 class packer(
   $ensure    = 'installed',
-  $version   = '0.7.5',
+  $version   = '0.8.6',
   $bin_dir   = $packer::params::bin_dir,
   $cache_dir = $packer::params::cache_dir,
 ) inherits packer::params {
@@ -42,21 +42,22 @@ class packer(
         $prefix = ''
       }
 
-      $packer_basename = inline_template(
-        "<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}\" %>"
-      )
+      $packer_basename = inline_template("<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}\" %>")
 
       $packer_url = "${packer::params::base_url}${packer_basename}.zip"
 
-      # Download the Packer zip archive to the cache.
-      archive { "${cache_dir}/${packer_basename}.zip" :
-        ensure          => present,
-        extract         => true,
-        extract_path    => $bin_dir,
-        source          => $packer_url,
-        checksum_verify => false,
-        cleanup         => true,
-        creates         => "${bin_dir}/packer",
+      # if the installed version does not match what we specify then install
+      # that version of packer.
+      if $::packer_version != $version {
+        # Download the Packer zip archive to the cache.
+        archive { "${cache_dir}/${packer_basename}.zip" :
+          ensure          => present,
+          extract         => true,
+          extract_path    => $bin_dir,
+          source          => $packer_url,
+          checksum_verify => false,
+          cleanup         => true,
+        }
       }
 
     }

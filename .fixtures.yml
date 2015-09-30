@@ -2,9 +2,7 @@ fixtures:
   repositories:
     archive:
       repo: "https://github.com/puppet-community/puppet-archive.git"
-    pe_gem:
-      repo: "https://github.com/puppetlabs/puppetlabs-pe_gem.git"
     stdlib:
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
   symlinks:
-      packer: "#{source_dir}"
+      'packer': '#{source_dir}'

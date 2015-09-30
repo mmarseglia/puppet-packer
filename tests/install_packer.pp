@@ -5,6 +5,7 @@ node default {
   include archive
   include stdlib
 
+  # install default version of packer
   include packer
 
   packer::plugin { 'post-processor-vagrant-vmware-ovf' :

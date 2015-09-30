@@ -7,10 +7,15 @@
   "summary": "Puppet module for installing Packer, the modern automated machine image creation tool.",
   "description": "Puppet module for installing Packer, the modern automated machine image creation tool.",
   "project_page": "https://github.com/mmarseglia/puppet-packer",
-  "source": "git://github.com/mmarseglia/puppet-packer",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 2.4.0 < 5.0.0"},
-    {"name":"puppet-community/puppet-archive","version_requirement":"0.3.0"}
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement":">= 2.4.0 < 5.0.0"
+    },
+    {
+      "name": "puppet/archive",
+      "version_requirement": "0.3.0"
+    }
   ],
   "operatingsystem_support": [
       {

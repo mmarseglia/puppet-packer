@@ -36,15 +36,10 @@ class packer(
         $arch = '386'
       }
 
-      if versioncmp($version, '0.7.0') >= 0 {
-        $prefix = 'packer_'
-      } else {
-        $prefix = ''
-      }
+	$kernel_l = downcase($::kernel)
+      $packer_basename = "packer_${version}_${kernel_l}_${arch}"
 
-      $packer_basename = inline_template("<%= \"#{@prefix}#{@version}_#{scope['::kernel'].downcase}_#{@arch}\" %>")
-
-      $packer_url = "${packer::params::base_url}${packer_basename}.zip"
+      $packer_url = "${packer::params::base_url}/${version}/${packer_basename}.zip"
 
       # if the installed version does not match what we specify then install
       # that version of packer.

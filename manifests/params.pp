@@ -9,7 +9,7 @@ class packer::params {
 
   ensure_resource('class', 'stdlib')
 
-  $base_url  = 'https://releases.hashicorp.com/packer/'
+  $base_url  = 'https://releases.hashicorp.com/packer'
 
   case downcase($::kernel) {
     'windows' : {

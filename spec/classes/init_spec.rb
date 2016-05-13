@@ -8,5 +8,9 @@ describe 'packer' do
 
 	it { should compile }
 	it { should contain_class('packer') }
-	it { should contain_archive('/tmp/packer_0.8.6_linux_amd64.zip') }
+	it do
+	  is_expected.to contain_archive('/tmp/packer_0.10.1_linux_amd64.zip').with({
+	    'source' => 'https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_linux_amd64.zip',
+	  })
+	end
 end

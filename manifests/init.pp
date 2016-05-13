@@ -8,7 +8,7 @@
 #  Defaults to 'installed', if set to 'absent' will remove Packer.
 #
 # [*version*]
-#  The version of Packer to install, defaults to 0.8.6.
+#  The version of Packer to install, defaults to 0.10.1
 #
 # [*bin_dir*]
 #  The binary directory to place Packer in.  Defaults to '/usr/local/bin'.
@@ -19,7 +19,7 @@
 #
 class packer(
   $ensure    = 'installed',
-  $version   = '0.8.6',
+  $version   = '0.10.1',
   $bin_dir   = $packer::params::bin_dir,
   $cache_dir = $packer::params::cache_dir,
 ) inherits packer::params {
@@ -36,7 +36,7 @@ class packer(
         $arch = '386'
       }
 
-	$kernel_l = downcase($::kernel)
+      $kernel_l = downcase($::kernel)
       $packer_basename = "packer_${version}_${kernel_l}_${arch}"
 
       $packer_url = "${packer::params::base_url}/${version}/${packer_basename}.zip"

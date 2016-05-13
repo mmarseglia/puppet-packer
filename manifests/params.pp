@@ -3,13 +3,13 @@
 #
 # [*base_url*]
 #  The base download URL to retrieve Packer from, including a
-#  a trailing '/'.  Defaults to: 'https://dl.bintray.com/mitchellh/packer/'.
+#  a trailing '/'.  Defaults to: 'https://releases.hashicorp.com/packer/'
 #
 class packer::params {
 
   ensure_resource('class', 'stdlib')
 
-  $base_url  = 'https://dl.bintray.com/mitchellh/packer/'
+  $base_url  = 'https://releases.hashicorp.com/packer/'
 
   case downcase($::kernel) {
     'windows' : {

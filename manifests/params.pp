@@ -10,6 +10,8 @@ class packer::params {
   ensure_resource('class', 'stdlib')
 
   $base_url  = 'https://releases.hashicorp.com/packer'
+  $ensure    = 'installed'
+  $version   = '0.10.1'
 
   case downcase($::kernel) {
     'windows' : {

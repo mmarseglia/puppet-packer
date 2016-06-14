@@ -58,6 +58,5 @@ task :test => [
   :metadata_lint,
   :syntax,
   :lint,
-  :rubocop,
   :spec,
 ]

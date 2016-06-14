@@ -18,10 +18,11 @@
 #  '/tmp'.
 #
 class packer(
-  $ensure    = 'installed',
-  $version   = '0.10.1',
+  $ensure    = $packer::params::ensure,
+  $version   = $packer::params::version,
   $bin_dir   = $packer::params::bin_dir,
   $cache_dir = $packer::params::cache_dir,
+  $base_url  = $packer::params::base_url,
 ) inherits packer::params {
   Exec {
     path => '/bin:/usr/bin:/sbin:/usr/sbin',
@@ -39,7 +40,7 @@ class packer(
       $kernel_l = downcase($::kernel)
       $packer_basename = "packer_${version}_${kernel_l}_${arch}"
 
-      $packer_url = "${packer::params::base_url}/${version}/${packer_basename}.zip"
+      $packer_url = "${base_url}/${version}/${packer_basename}.zip"
 
       # if the installed version does not match what we specify then install
       # that version of packer.

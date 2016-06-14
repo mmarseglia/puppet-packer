@@ -1,12 +1,14 @@
 node default {
+
   Exec {
       path => '/bin:/usr/bin:/sbin:/usr/sbin',
   }
-  include archive
-  include stdlib
+
+  include ::archive
+  include ::stdlib
 
   # install an older version of packer
-  class { 'packer' :
+  class { '::packer' :
     version => '0.7.5',
   }
 

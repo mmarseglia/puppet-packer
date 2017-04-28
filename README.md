@@ -39,6 +39,14 @@ If you change `version` this module will upgrade or downgrade Packer
 as appropriate.  You must use the default installation location for this
 feature to work.
 
+Use a proxy to download Packer.
+```puppet
+class { 'packer':
+  proxy => 'https://example.com:8080',
+}
+```
+
+
 ### Uninstall
 To uninstall Packer, set the `ensure` parameter to `absent`:
 

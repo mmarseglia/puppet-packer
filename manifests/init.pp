@@ -23,6 +23,7 @@ class packer(
   $bin_dir   = $packer::params::bin_dir,
   $cache_dir = $packer::params::cache_dir,
   $base_url  = $packer::params::base_url,
+  $proxy     = $packer::params::proxy,
 ) inherits packer::params {
   Exec {
     path => '/bin:/usr/bin:/sbin:/usr/sbin',
@@ -53,6 +54,7 @@ class packer(
           source          => $packer_url,
           checksum_verify => false,
           cleanup         => true,
+          proxy_server    => $proxy,
         }
       }
 

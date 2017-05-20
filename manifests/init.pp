@@ -25,9 +25,6 @@ class packer(
   $base_url  = $packer::params::base_url,
   $proxy     = $packer::params::proxy,
 ) inherits packer::params {
-  Exec {
-    path => '/bin:/usr/bin:/sbin:/usr/sbin',
-  }
 
   case $ensure {
     'present', 'installed': {

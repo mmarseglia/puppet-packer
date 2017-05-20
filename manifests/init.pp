@@ -46,16 +46,29 @@ class packer(
       # if the installed version does not match what we specify then install
       # that version of packer.
       if $::packer_version != $version {
+
+        # find SHA256 to validate downloaded binary
+        file { "${cache_dir}/sha256sums" :
+          source => "$base_url/${version}/packer_${version}_SHA256SUMS",
+        }
+        $data = file("${cache_dir}/sha256sums")
+        $match = $data.match(".+${version}.+")
+        $values = split($match[0],'  ')
+        $checksum = $values[0]
+
         # Download the Packer zip archive to the cache.
-        archive { "${cache_dir}/${packer_basename}.zip" :
+        archive { "${cache_dir}/${installer}" :
           ensure          => present,
           extract         => true,
           extract_path    => $bin_dir,
-          source          => $packer_url,
-          checksum_verify => false,
+          source          => "${base_url}/${version}/${installer}",
+          checksum_verify => true,
+          checksum_type   => 'sha256',
+          checksum        => $checksum,
           cleanup         => true,
           proxy_server    => $proxy,
         }
+
       }
 
     }

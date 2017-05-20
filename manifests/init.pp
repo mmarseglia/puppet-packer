@@ -26,34 +26,31 @@ class packer(
   $proxy     = $packer::params::proxy,
 ) inherits packer::params {
 
-  if $::architecture in ['x86_64', 'amd64', 'x64'] {
-    $arch = 'amd64'
-  } else {
-    $arch = '386'
-  }
-
-  $kernel_l = downcase($::kernel)
-  $packer_basename = "packer_${version}_${kernel_l}_${arch}"
-
-  $packer_url = "${base_url}/${version}/${packer_basename}.zip"
-
   case $ensure {
     'present', 'installed': {
       # if the installed version does not match what we specify then install
       # that version of packer.
-      if $::packer_version != $version {
+      if versioncmp($version, $::packer_version) > 0 {
+
+        if $::architecture in ['x86_64', 'amd64', 'x64'] {
+          $arch = 'amd64'
+        } else {
+          $arch = '386'
+        }
+        $kernel_l = downcase($::kernel)  
+        $installer = "packer_${version}_${kernel_l}_${arch}.zip"
+
         # Download the Packer zip archive to the cache.
-        archive { "${cache_dir}/${packer_basename}.zip" :
+        archive { "${cache_dir}/${installer}" :
           ensure          => present,
           extract         => true,
           extract_path    => $bin_dir,
-          source          => $packer_url,
+          source          => "${base_url}/${version}/${installer}",
           checksum_verify => false,
           cleanup         => true,
           proxy_server    => $proxy,
         }
       }
-
     }
     'absent', 'uninstalled': {
       # Ensure the binaries are removed.

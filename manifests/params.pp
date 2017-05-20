@@ -6,15 +6,9 @@
 #  a trailing '/'.  Defaults to: 'https://releases.hashicorp.com/packer/'
 #
 class packer::params {
-  Exec {
-    path => '/bin:/usr/bin:/sbin:/usr/sbin',
-  }
-  
-  ensure_resource('class', 'stdlib')
-
   $base_url  = 'https://releases.hashicorp.com/packer'
   $ensure    = 'installed'
-  $version   = '0.10.1'
+  $version   = '1.0.0'
   $proxy     = undef
 
   case downcase($::kernel) {
@@ -22,14 +16,12 @@ class packer::params {
       $bin_dir    = 'C:\WINDOWS\system32'
       $cache_dir  = 'C:\TEMP'
     }
-    /^(linux|darwin)$/ : {
-      $bin_dir   = '/usr/local/bin'
-      $cache_dir = '/tmp'
-    }
     default : {
-      notice ( 'Operating system $::kernel not supported, trying defaults.')
+      Exec {
+        path => '/bin:/usr/bin:/sbin:/usr/sbin',
+      }
       $bin_dir   = '/usr/local/bin'
       $cache_dir = '/tmp'
     }
-  }
+  } 
 }

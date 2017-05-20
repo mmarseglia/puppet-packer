@@ -6,7 +6,10 @@
 #  a trailing '/'.  Defaults to: 'https://releases.hashicorp.com/packer/'
 #
 class packer::params {
-
+  Exec {
+    path => '/bin:/usr/bin:/sbin:/usr/sbin',
+  }
+  
   ensure_resource('class', 'stdlib')
 
   $base_url  = 'https://releases.hashicorp.com/packer'

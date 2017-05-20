@@ -18,12 +18,12 @@
 #  '/tmp'.
 #
 class packer(
-  $ensure    = $packer::params::ensure,
-  $version   = $packer::params::version,
-  $bin_dir   = $packer::params::bin_dir,
-  $cache_dir = $packer::params::cache_dir,
-  $base_url  = $packer::params::base_url,
-  $proxy     = $packer::params::proxy,
+  String $ensure    = $packer::params::ensure,
+  String $version   = $packer::params::version,
+  String $bin_dir   = $packer::params::bin_dir,
+  String $cache_dir = $packer::params::cache_dir,
+  String $base_url  = $packer::params::base_url,
+  String $proxy     = $packer::params::proxy,
 ) inherits packer::params {
 
   case $ensure {

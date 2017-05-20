@@ -26,20 +26,19 @@ class packer(
   $proxy     = $packer::params::proxy,
 ) inherits packer::params {
 
+  if $::architecture in ['x86_64', 'amd64', 'x64'] {
+    $arch = 'amd64'
+  } else {
+    $arch = '386'
+  }
+
+  $kernel_l = downcase($::kernel)
+  $packer_basename = "packer_${version}_${kernel_l}_${arch}"
+
+  $packer_url = "${base_url}/${version}/${packer_basename}.zip"
+
   case $ensure {
     'present', 'installed': {
-
-      if $::architecture in ['x86_64', 'amd64', 'x64'] {
-        $arch = 'amd64'
-      } else {
-        $arch = '386'
-      }
-
-      $kernel_l = downcase($::kernel)
-      $packer_basename = "packer_${version}_${kernel_l}_${arch}"
-
-      $packer_url = "${base_url}/${version}/${packer_basename}.zip"
-
       # if the installed version does not match what we specify then install
       # that version of packer.
       if $::packer_version != $version {

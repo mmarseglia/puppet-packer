@@ -5,7 +5,7 @@ describe 'packer' do
 	let(:facts) { {
 		:architecture => 'x86_64',
 		:kernel => 'Linux',
-		:packer_version => '1.0.0',
+		:packer_version => '10.1',
 	} }
 
 	# required for module archive

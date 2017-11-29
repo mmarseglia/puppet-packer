@@ -11,7 +11,7 @@ class packer::params {
 
   $base_url  = 'https://releases.hashicorp.com/packer'
   $ensure    = 'installed'
-  $version   = '1.0.0'
+  $version   = '1.1.2'
   $proxy     = undef
 
   case downcase($::kernel) {

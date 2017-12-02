@@ -18,13 +18,13 @@
 #  '/tmp'.
 #
 class packer(
-  $ensure    = $packer::params::ensure,
-  $version   = $packer::params::version,
-  $bin_dir   = $packer::params::bin_dir,
-  $cache_dir = $packer::params::cache_dir,
-  $base_url  = $packer::params::base_url,
-  $proxy     = $packer::params::proxy,
-) inherits packer::params {
+  $ensure,
+  $version,
+  $bin_dir,
+  $cache_dir,
+  $base_url,
+  $proxy,
+) {
   Exec {
     path => '/bin:/usr/bin:/sbin:/usr/sbin',
   }
@@ -44,7 +44,7 @@ class packer(
       $packer_url = "${base_url}/${version}/${packer_basename}.zip"
 
       # Download the Packer zip archive to the cache.
-      archive { "${cache_dir}/${packer_basename}.zip" :
+      archive { "${cache_dir}${packer_basename}.zip" :
         ensure          => present,
         extract         => true,
         extract_path    => $bin_dir,
@@ -92,7 +92,7 @@ class packer(
           'packer-provisioner-salt-masterless',
           'packer-provisioner-shell',
         ],
-        "${bin_dir}/"
+        "${bin_dir}"
       )
 
       file { $binaries:

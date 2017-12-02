@@ -1,0 +1,7 @@
+---
+packer::base_url: 'https://releases.hashicorp.com/packer'
+packer::ensure: 'installed'
+packer::version: '1.1.2'
+packer::proxy: null
+packer::bin_dir: '/usr/local/bin/'
+packer::cache_dir: '/tmp/'

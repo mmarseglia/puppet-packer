@@ -1,6 +1,6 @@
 {
   "name": "mmarseglia-packer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "source": "git://github.com/mmarseglia/puppet-packer.git",
   "author": "Mike Marseglia",
   "license": "Apache-2.0",

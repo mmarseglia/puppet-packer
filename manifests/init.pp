@@ -43,21 +43,16 @@ class packer(
 
       $packer_url = "${base_url}/${version}/${packer_basename}.zip"
 
-      # if the installed version does not match what we specify then install
-      # that version of packer.
-      if $::packer_version != $version {
-        # Download the Packer zip archive to the cache.
-        archive { "${cache_dir}/${packer_basename}.zip" :
-          ensure          => present,
-          extract         => true,
-          extract_path    => $bin_dir,
-          source          => $packer_url,
-          checksum_verify => false,
-          cleanup         => true,
-          proxy_server    => $proxy,
-        }
+      # Download the Packer zip archive to the cache.
+      archive { "${cache_dir}/${packer_basename}.zip" :
+        ensure          => present,
+        extract         => true,
+        extract_path    => $bin_dir,
+        source          => $packer_url,
+        checksum_verify => false,
+        cleanup         => true,
+        proxy_server    => $proxy,
       }
-
     }
     'absent', 'uninstalled': {
       # Ensure the binaries are removed.

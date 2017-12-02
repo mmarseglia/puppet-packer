@@ -7,9 +7,6 @@ group :test do
   gem "puppetlabs_spec_helper"
   gem "metadata-json-lint"
   gem "rspec-puppet-facts"
-  gem 'rubocop'
-  gem 'simplecov'
-  gem 'simplecov-console'
   gem 'puppet-lint'
   gem 'semantic_puppet'
 end

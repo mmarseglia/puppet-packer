@@ -5,7 +5,6 @@ describe 'packer' do
 	let(:facts) { {
 		:architecture => 'x86_64',
 		:kernel => 'Linux',
-		:packer_version => '10.1',
 	} }
 
 	# required for module archive
@@ -15,8 +14,8 @@ describe 'packer' do
 	it { should contain_class('packer') }
 
 	it do
-	  is_expected.to contain_archive('/tmp/packer_1.0.0_linux_amd64.zip').with({
-	    'source' => 'https://releases.hashicorp.com/packer/1.0.0/packer_1.0.0_linux_amd64.zip',
+	  is_expected.to contain_archive('/tmp/packer_1.1.2_linux_amd64.zip').with({
+	    'source' => 'https://releases.hashicorp.com/packer/1.1.2/packer_1.1.2_linux_amd64.zip',
 	  })
 	end
 	end

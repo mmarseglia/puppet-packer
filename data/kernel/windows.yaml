@@ -1,0 +1,3 @@
+---
+packer::bin_dir: 'C:\WINDOWS\system32\'
+packer::cache_dir: 'C:\TEMP\'

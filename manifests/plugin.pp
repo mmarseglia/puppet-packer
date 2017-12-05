@@ -7,20 +7,15 @@
 #
 define packer::plugin (
   $ensure     = 'present',
-  $version    = UNDEF,
+  $version    = '',
 ) {
-
-  include ::packer::params
-
-  validate_string($name)
-  validate_string($ensure)
 
   if $version == undef {
     fail("Plugin ${name} version is undefined. You must specify a version")
   }
 
-  $bin_dir    = $::packer::params::bin_dir
-  $cache_dir  = $::packer::params::cache_dir
+  $bin_dir    = lookup('packer::bin_dir')
+  $cache_dir  = lookup('packer::cache_dir')
 
   if $::architecture in ['x86_64', 'amd64', 'x64'] {
     $arch = 'amd64'

@@ -55,3 +55,7 @@ provision/pe/*
 vendor
 .bundle
 *.lock
+
+# Puppet package #
+##################
+pkg

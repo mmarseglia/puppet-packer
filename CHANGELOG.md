@@ -16,3 +16,10 @@ IMPROVEMENTS:
 * Removed support for Puppet 2.7.
 * Added support for upgrading existing packer installation.
 * Fixed broken tests.
+
+## 2.0.0
+
+ * Default version of packer is 1.1.2.
+ * Update module for Puppet5.
+ * Replace params.pp pattern with in-module hiera data, requires hiera 5.
+ * Update module dependencies.

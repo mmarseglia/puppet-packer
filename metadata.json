@@ -5,7 +5,6 @@
   "author": "Mike Marseglia",
   "license": "Apache-2.0",
   "summary": "Puppet module for installing Packer, the modern automated machine image creation tool.",
-  "description": "Puppet module for installing Packer, the modern automated machine image creation tool.",
   "project_page": "https://github.com/mmarseglia/puppet-packer",
   "dependencies": [
     {

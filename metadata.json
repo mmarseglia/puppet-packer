@@ -4,8 +4,8 @@
   "author": "Mike Marseglia",
   "summary": "Puppet module for installing Packer, the modern automated machine image creation tool.",
   "license": "Apache-2.0",
-  "source": "git://github.com/mmarseglia/puppet-packer.git",
-  "project_page": "https://github.com/mmarseglia/puppet-packer",
+  "source": "git://git@gitlab.com:mmarseglia-puppet/puppet-packer.git",
+  "project_page": "https://gitlab.com/mmarseglia-puppet/puppet-packer",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",

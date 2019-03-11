@@ -92,7 +92,7 @@ class packer(
           'packer-provisioner-salt-masterless',
           'packer-provisioner-shell',
         ],
-        ${bin_dir}
+        $bin_dir
       )
 
       file { $binaries:

@@ -1,6 +1,7 @@
 packer
 =======
-[![Build Status](https://travis-ci.org/mmarseglia/puppet-packer.svg)](https://travis-ci.org/mmarseglia/puppet-packer)
+
+# This project has moved to https://gitlab.com/mmarseglia-puppet/puppet-packer/
 
 ## Description
 
@@ -69,4 +70,4 @@ packer::plugin { 'my-plugin' :
 Apache License, Version 2.0
 
 ## Support
-Please log tickets and issues at https://github.com/mmarseglia/puppet-packer
+Please log tickets and issues at https://gitlab.com/mmarseglia-puppet/puppet-packer/issues

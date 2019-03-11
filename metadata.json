@@ -2,10 +2,9 @@
   "name": "mmarseglia-packer",
   "version": "2.0.1",
   "author": "Mike Marseglia",
-  "summary": "Puppet module for installing Packer, the modern automated machine image creation tool.",
   "license": "Apache-2.0",
+  "summary": "Puppet module for installing Packer, the modern automated machine image creation tool.",
   "source": "git://git@gitlab.com:mmarseglia-puppet/puppet-packer.git",
-  "project_page": "https://gitlab.com/mmarseglia-puppet/puppet-packer",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
@@ -16,6 +15,14 @@
       "version_requirement": ">= 1.0.0 < 3.0.0"
     }
   ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 7.0.0"
+    }
+  ],
+  "project_page": "https://gitlab.com/mmarseglia-puppet/puppet-packer",
+  "issues_url": "https://gitlab.com/mmarseglia-puppet/puppet-packer/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS"
@@ -34,12 +41,6 @@
     },
     {
       "operatingsystem": "Ubuntu"
-    }
-  ],
-  "requirements": [
-    {
-      "name": "puppet",
-      "version_requirement": ">= 4.10.0 < 7.0.0"
     }
   ],
   "pdk-version": "1.9.0",
